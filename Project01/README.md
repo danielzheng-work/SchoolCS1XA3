@@ -24,12 +24,21 @@ Description: this feature will list all files in repo and their size in human re
 Execution: exceute this feature by using ls command with options of -l,-h,-R, -S, -P, to output each file and directory 
 		   in repo including their sizes in human readable format, then piping the output with grep to remove all directory
 		   and use awk to print only filename and size
-## Custom Feature 4
-Description: this feature will reverse an word that user provided 
-Execution: exceute this feature by getting a word from user using read, and count number letter of the word. then using loop
-		   to print each letter out without newline in the end.		 
-## Custom Feature 5
-Description: this feature will replace specific word provided by user with another work provided by user for all text file 
-			 repo that contains the first word
-Execution: exceute this feature by using for loop through each text file in repo, and use sed command to replace words.
-
+## Feture 4
+Description: this feature will change permission of the files ending in .sh to exceutable, or restore back to orginal permission 
+Execution: First ask user to enter integer 1 for change or 2 for restore permission, then for Change option: getting the file orginal 
+	permission and store it in permission log file, then change file that can has write permission, but not exceute permission to become 
+	exceutable. For restore option: getting the each line from permission log, then for file has not exceutable permission, use chmod to remove its exceutable.
+## Feture 5
+Description: this feature will backup or restore files ending in .tmp in backup directory
+Execution: First ask user to enter 1 for backup , 2 for restore, then for backup: check if backup directory exits.
+	empty if exit, create if not. then add files orginal location to restore log, then mv file to backup directory. for restore option:
+	access restore log, check if file exits in backup directory, then mv it back to its orginal location.
+## Feture 6                                                                                                            
+Description: this feature will reverse a line of string that user provided
+Execution: exceute this feature by getting the string from user using read, and use grep to break the string,
+	then using tac command to reverse the order. In the end, put these segment of string together using loop.
+## Feature 7
+Description: this feature will replace specific word provided by user with another word that also provided by user for all text type file.
+Execution: exceute this feature by using read command to get the two word from user separatly, then find all text files in repo
+	and use sed command to replace words.
