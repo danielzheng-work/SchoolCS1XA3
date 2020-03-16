@@ -1,4 +1,4 @@
-# CS !XA3 Project02 - <zhengc15>
+# CS 1XA3 Project02 - zhengc15
 
 ## Overview
 
