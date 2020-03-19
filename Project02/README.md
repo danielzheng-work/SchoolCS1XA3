@@ -63,9 +63,9 @@ $(document).ready(function(){
  https://www.w3schools.com/howto/howto_make_a_website.asp
 ### Pictures From Internet
  The following are the pictures from Internet:
- *https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Tweety.svg/1200px-Tweety.svg.png
- *https://www.regionofwaterloo.ca/en/living-here/resources/Images/AnimalServices.jpg
- *https://www.1designshop.com/wp-content/uploads/2019/02/1designshop-2019-02-ppl001.png
+ * https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Tweety.svg/1200px-Tweety.svg.png
+ * https://www.regionofwaterloo.ca/en/living-here/resources/Images/AnimalServices.jpg
+ * https://www.1designshop.com/wp-content/uploads/2019/02/1designshop-2019-02-ppl001.png
 
 
 
