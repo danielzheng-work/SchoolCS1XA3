@@ -70,14 +70,14 @@ or sign up with USername and Password.
 - This feature will display all the friends of current user
 - It displayed in messages.djhtml which is rendered by messages_view
 ### Exceptions
--None
+- None
 
 ## Objective 08
 ### Description
 - This feature will submit posts from messages.js to submit a AJAX POST request when post-button is clicked, sending the contents of post-text to post_submit_view
 - Reload the page upon a success response, and post_submit_view will handle the post submission, by adding a new entry to the Post model
 ### Exceptions
--None
+- None
 
 ## Objective 09
 ### Description
@@ -86,14 +86,14 @@ or sign up with USername and Password.
 - The page should start out displaying only a certain amount of Posts and should display incrementally more as the More button is clicked
 - the session variable of number of posts displayed will reset when user logs out
 ### Exceptions
--None
+- None
 
 ## Objective 10
 ### Description
 - This feature will display a Like count of each post
 - Each posts in message_view will add an extra boolean attribute to let user know if the post has already been liked by the user
 ### Exceptions
--If a post has already been liked, set the button class to w3-disabled and remove
+- If a post has already been liked, set the button class to w3-disabled and remove
 the like-button class so the JQuery event no longer responds to it
 
 ## Objective 11
