@@ -4,16 +4,17 @@
 This Project builds an simple social media like site. it contains content such as  User profile, Friends and Post.
 
 ## Usage
-Install conda enivornment with ...
-...
-Run locally with
+- Run locally with
+```bash
 python manage.py runserver localhost:8000
-Run on mac1xa3.ca with
+```
+- Run on mac1xa3.ca with
+```bash
 python manage.py runserver localhost:10120
-...
-Log in with TestUser, password SomePassword
+```
+- Log in with TestUser, password SomePassword
 or sign up with USername and Password.
-...
+
 ## Objective 01
 ### Description
 - This feature will display two different pages: login and Sign up
