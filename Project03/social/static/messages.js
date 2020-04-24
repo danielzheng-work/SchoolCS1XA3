@@ -5,6 +5,24 @@
 function submitPost(event) {
     alert('Post Button Pressed');
     // TODO Objective 8: send contents of post-text via AJAX Post to post_submit_view (reload page upon success)
+    let post = event.target.id;
+    let json_data = {'post':post};
+    let url_path = messages_url
+
+    // AJAX post
+    $.post(url_path,
+        json_data,
+        postResponse);
+}
+
+function postResponse(data,status) {
+    if (status == 'success') {
+        // reload page to display new Post
+        location.reload();
+    }
+    else {
+        alert('failed to request more ppl' + status);
+    }
 }
 
 /* ********************************************************************************************

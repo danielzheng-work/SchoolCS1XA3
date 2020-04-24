@@ -1,6 +1,6 @@
 from django.http import HttpResponse,HttpResponseNotFound
 from django.shortcuts import render,redirect,get_object_or_404
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 
@@ -21,7 +21,8 @@ def messages_view(request):
 
 
         # TODO Objective 9: query for posts (HINT only return posts needed to be displayed)
-        posts = []
+        all_post= models.Post.objects.all()
+        posts = [post for post in all_post]
 
         # TODO Objective 10: check if user has like post, attach as a new attribute to each post
 
@@ -47,12 +48,32 @@ def account_view(request):
                         (if handled in this view)
     """
     if request.user.is_authenticated:
-        form = None
-
-        # TODO Objective 3: Create Forms and Handle POST to Update UserInfo / Password
-
+        form = PasswordChangeForm(request.user)
         user_info = models.UserInfo.objects.get(user=request.user)
-        context = { 'user_info' : user_info,
+        # TODO Objective 3: Create Forms and Handle POST to Update UserInfo / Password
+        if request.method == 'POST':
+            if 'employment' in request.POST:
+                if request.POST['employment'] is not None:
+                    user_info.employment = request.POST['employment']
+                if request.POST['location'] is not None:
+                    user_info.location = request.POST['location']
+                if request.POST['birthday'] is not None:
+                    user_info.birthday = request.POST['birthday']
+                if request.POST['interest'] is not None:
+                    interest = request.POST['interest']
+                    newint = models.Interest(label=interest)
+                    newint.save()
+                    user_info.interests.add(newint)
+                user_info.save()
+                return redirect('social:messages_view')
+            else:
+                form = PasswordChangeForm(request.user, request.POST)
+                if form.is_valid():
+                    user = form.save()
+                    update_session_auth_hash(request, user) 
+                    return redirect('login:login_view')
+        context = { 
+                    'user_info' : user_info,
                     'form' : form }
         return render(request,'account.djhtml',context)
 
@@ -72,10 +93,14 @@ def people_view(request):
     if request.user.is_authenticated:
         user_info = models.UserInfo.objects.get(user=request.user)
         # TODO Objective 4: create a list of all users who aren't friends to the current user (and limit size)
-        all_people = []
+        all_user = models.UserInfo.objects.exclude(user=request.user)
+        all_people = [people for people in all_user if people not in user_info.friends.all()]
+        request.session['more'] = False
+
 
         # TODO Objective 5: create a list of all friend requests to current user
-        friend_requests = []
+        all_request = models.FriendRequest.objects.all()
+        friend_requests = [friend for friend in all_request if friend.to_user.user == request.user]
 
         context = { 'user_info' : user_info,
                     'all_people' : all_people,
@@ -135,7 +160,8 @@ def post_submit_view(request):
         if request.user.is_authenticated:
 
             # TODO Objective 8: Add a new entry to the Post model
-
+            post = models.Post(owner=request.user, content=postContent)
+            post.save()
             # return status='success'
             return HttpResponse()
         else:

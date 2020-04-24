@@ -1,5 +1,11 @@
 {% extends 'social_base.djhtml' %}
 
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'w3login.css' %}">
+{% endblock %}
+
+
 {% block title %}Account Page{% endblock %}
 
 {% block middle_column %}
@@ -9,6 +15,11 @@
                 <div class="w3-container w3-padding">
                     <h6 class="w3-opacity">Change Password</h6>
                     <!--                     TODO Objective 3: Add Password Change Form -->
+                            <form method="post" id="form" action="{% url 'social:account_view' %}">
+                                {% csrf_token %}
+                                {{ form }}
+                                <input type="submit" value="Submit" />
+                            </form>
                 </div>
             </div>
         </div>
@@ -19,6 +30,26 @@
                 <div class="w3-container w3-padding">
                     <h6 class="w3-opacity">Update Info</h6>
                     <!--                     TODO Objective 3: Add User Info Update Forms -->
+
+                        <form method="post" id="user" action="{% url 'social:account_view' %}">
+                                {% csrf_token %}
+                                <label for="employment"><b>Employment</b></label>
+                                <input type="text" placeholder="Enter Employment or leave blank" name="employment">
+
+                                <label for="location"><b>Location</b></label>
+                                <input type="text" placeholder="Enter Location or leave blank" name="location">
+
+                                <label for="birthday"><b>Birthday</b></label>
+                                <input type="date"name="birthday">
+                                <br>
+                                <label for="interest"><b>New Interest</b></label>
+                                <input type="text" placeholder="Enter Interest or leave blank" name="interest">
+
+                                <input type="submit" value="Submit" />
+                        </form>
+    </div>
+
+                        
                 </div>
             </div>
         </div>

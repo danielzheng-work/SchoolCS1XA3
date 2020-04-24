@@ -38,7 +38,11 @@ class="close" title="Close Modal">&times;</span>
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
     </div>
   </form>
+  {% if failed %}
+        <p style="color:red"> Invalid username or password </p>
+    {% endif %}
 </div>
+
 {% endblock %}
 
 {% block script %}
